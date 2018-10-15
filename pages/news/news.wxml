@@ -1,0 +1,48 @@
+<!--news.wxml-->
+<!--news tab -->
+<!-- <view class="top-tab flex-wrp flex-tab">
+  <view class="toptab flex-item {{currentNavtab==idx ? 'active' : ''}}" wx:for="{{navTab}}" wx:for-index="idx" wx:for-item="itemName" data-idx="{{idx}}" bindtap="switchTab">
+    1
+  </view>
+</view> -->
+<!--news list-->
+<view class="card" wx:for="{{contentlist}}" wx:for-index="itemIndex">
+  <view class='flex-wrp'>
+      <view class='new-Photo flex-item'>
+        <!-- <image mode='scaleToFill' src='../../images/logo.jpg'></image> -->
+        <image mode='scaleToFill' src='{{item.imageurls[0].url}}'></image>
+      </view>
+      <view class='new-title flex-item'>
+        <text class="new_title">{{ item.title }}</text>
+      </view>     
+  </view>
+  <view><text class="tag">标签：{{ item.channelName }}</text></view>
+  <view><text class="new_source">发布于 {{ item.pubDate }}, 来源 {{ item.source }}</text></view>
+  <view class="btn-area">
+      <button type="default" size="mini" data-index="{{itemIndex}}" bindtap="modalTap">查看详情...</button>
+  </view>
+</view>
+
+<!-- <web-view src="http://sports.qq.com/a/20181013/008927.htm"></web-view> -->
+
+<!-- modal -->
+<modal title="新闻详情" confirm-text="确定" hidden="{{modalHidden}}" no-cancel bindconfirm="modalHide">
+    <view>
+        <image class="news-avatar" src="{{modalContent.imageurls[0].url}}" background-size="cover"></image>
+    </view>
+    <view>
+        <text>标题: {{modalNewsContent.title}}</text>
+    </view>
+    <!-- <view>
+        <text>来源: {{modalNewsContent.source}}</text>
+    </view>
+    <view>
+        <text>发布于 {{modalNewsContent.pubDate}}</text>
+    </view> -->
+    
+    <view>
+        详情: <text>{{modalNewsContent.desc}}</text>
+    </view><view>
+        链接: <text>{{modalNewsContent.link}}</text>
+    </view>
+</modal>

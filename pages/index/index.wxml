@@ -1,0 +1,20 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="userinfo">
+    <!-- <image class="userinfo-avatar" src="{{img}}" background-size="cover"></image> -->
+    <image class="userinfo-avatar" src="../../images/logo.jpg" background-size="cover"></image>
+    <text>Hi, Welcome to news center</text>
+  </view>
+  <view>
+    <!-- <image class='logo' src='../../img/logo.png'></image> -->
+    <view class='load'>
+      <text class='{{current == 0 ? "sct": ""}}'></text>
+      <text class='{{current == 1 ? "sct": ""}}'></text>
+      <text class='{{current == 2 ? "sct": ""}}'></text>
+      <text class='{{current == 3 ? "sct": ""}}'></text>
+    </view>
+  </view>
+  <view class="usermotto">
+    <button type="primary" class="user-motto" bindtap="bindViewTap">{{welcome}}</button>
+  </view>
+</view>

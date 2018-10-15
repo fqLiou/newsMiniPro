@@ -1,0 +1,12 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/news/news"
+  ],
+  "window":{
+    "backgroundTextStyle":"dark",
+    "navigationBarBackgroundColor": "#B8BE9A",
+    "navigationBarTitleText": "最新新闻",
+    "navigationBarTextStyle":"white"
+  }
+}
