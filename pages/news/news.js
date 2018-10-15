@@ -57,6 +57,13 @@ Page({
 
     })
   },
+  showNewsDetail: function(e){
+    var that = this, index = Number(e.currentTarget.dataset.index), newsContentObj = that.data.contentlist[index];
+    wx.navigateTo({
+      url: '../newsDetail/newsDetail?newsContentObj=' + newsContentObj
+    })
+    console.log('newsContentObj', newsContentObj);
+  },
   modalTap: function (e) {
     var that = this, index = Number(e.currentTarget.dataset.index);
     console.log('index', index);
@@ -68,7 +75,7 @@ Page({
       modalHidden: false
     })
     console.log('contentlist', that.data.contentlist[index]);
-    console.log('url', that.data.contentlist[index].imageurls[0].url);
+    // console.log('url', that.data.contentlist[index].imageurls[0].url);
   },
   modalHide: function(e) {
     this.setData({
