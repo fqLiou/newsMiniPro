@@ -1,5 +1,29 @@
 <!--pages/newsDetail/newsDetail.wxml-->
-<text>{{newsObj.source}}</text>
-<text>{{newsObj.pubDate}}</text>
-<text>{{newsObj.link}}</text>
-<text>{{newsObj.content}}</text>
+<view class='flex-wrp' wx:if='{{showContentFlag}}'>
+  <view class='new-title flex-item textLeft'>
+    <text>{{newsObj.title}}</text>
+  </view>
+  <view class='new-source flex-item textLeft'>
+    <view class='iconfont icon-laiyuan sourceIcon' wx:if='{{showSourceFlag}}'>
+      <text>{{newsObj.source}}</text>
+    </view>
+    <view class='iconfont icon-send-clock pubIcon'>
+      <text>{{newsObj.pubDate}}</text>
+    </view>
+  </view>
+  <view class='new-content flex-item textLeft'>
+    <text>{{newsObj.content}}</text>
+    <!-- <image src='http://img.027cgb.com/608987/logo.jpg
+'></image>     -->
+  </view>
+  <view class='flex-item iconfont icon-back backIcon' bindtap='backNewsList'>返回</view>
+</view>
+<!-- content内容为空，显示提示 -->
+<view class='flex-wrp' wx:if='{{!showContentFlag}}' bindtap='backNewsList'>  
+  <view class='iconfont icon-shujuqueshi noContentIcon flex-item'></view>
+  <view class='tipsText flex-item'>
+    <text>
+      抱歉，此新闻内容缺失,点此返回
+    </text>
+  </view>
+</view>

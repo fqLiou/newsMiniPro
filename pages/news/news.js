@@ -82,13 +82,6 @@ Page({
       modalHidden: true
     })
   },
-  // backIndex: function(e){
-  //   var currentPages = getCurrentPages();
-  //   console.log('currentPages', currentPages);
-  //   wx.navigateBack({
-  //     url:'./index/index'
-  //   })
-  // },
   onPullDownRefresh: function (){//下拉刷新数据
     this.data.page = 1
     this.getNewsList('正在刷新数据');
