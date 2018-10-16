@@ -58,11 +58,11 @@ Page({
     })
   },
   showNewsDetail: function(e){
-    var that = this, index = Number(e.currentTarget.dataset.index), newsContentObj = that.data.contentlist[index];
+    var that = this, index = Number(e.currentTarget.dataset.index), id = that.data.contentlist[index].id;
     wx.navigateTo({
-      url: '../newsDetail/newsDetail?newsContentObj=' + newsContentObj
+      url: '../newsDetail/newsDetail?id=' + id
     })
-    console.log('newsContentObj', newsContentObj);
+    console.log('id', id);
   },
   modalTap: function (e) {
     var that = this, index = Number(e.currentTarget.dataset.index);

@@ -1,2 +1,5 @@
 <!--pages/newsDetail/newsDetail.wxml-->
-<text>pages/newsDetail/newsDetail.wxml</text>
+<text>{{newsObj.source}}</text>
+<text>{{newsObj.pubDate}}</text>
+<text>{{newsObj.link}}</text>
+<text>{{newsObj.content}}</text>

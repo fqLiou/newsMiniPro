@@ -1,5 +1,5 @@
 //app.js
-var news = require('./news.js');
+// var news = require('./news.js');
 
 App({
   onLaunch: function () {
@@ -27,6 +27,6 @@ App({
     }
   },
   globalData: {
-    news
+    // news
   }
 })
