@@ -1,12 +1,12 @@
 <!--news.wxml-->
-<!--news tab -->
+<!--news-tab -->
 <!-- <view class="top-tab flex-wrp flex-tab">
   <view class="toptab flex-item {{currentNavtab==idx ? 'active' : ''}}" wx:for="{{navTab}}" wx:for-index="idx" wx:for-item="itemName" data-idx="{{idx}}" bindtap="switchTab">
     1
   </view>
 </view> -->
-<!--news list-->
-<view class="card" wx:for="{{contentlist}}" wx:for-index="itemIndex">
+<!--news-list-->
+<view class="newsContainer" wx:for="{{contentlist}}" wx:for-index="itemIndex">
   <view class='flex-wrp'>
       <view class='new-Photo flex-item'>
         <!-- <image mode='scaleToFill' src='../../images/logo.jpg'></image> -->
@@ -17,42 +17,47 @@
         <text class="new_title">{{ item.title }}</text>
       </view>     
   </view>
-  <!-- <view><text class="tag">标签：{{ item.channelName }}</text></view> -->
   <view class='iconfont icon-biaoqian tagIcon'>
     <text>{{item.channelName}}</text>
   </view>
-  <view class='iconfont icon-laiyuan sourceIcon' wx:if='{{showSourceFlag}}'>
-    <text>{{item.source}}</text>
-  </view>    
-  <view class='iconfont icon-send-clock pubIcon'>
-    <text>{{item.pubDate}}</text>
-  </view>
-  <view class="btn-area">
-      <view class='iconfont icon-more more' data-index="{{itemIndex}}" bindtap="showNewsDetail"></view>
-      <!-- <button type="default" size="mini" data-index="{{itemIndex}}" bindtap="showNewsDetail">查看详情...</button> -->
-  </view>
+
+  <view class='flex-col'>
+    <view class='conLeft flex-item'>
+      <view class='iconfont icon-laiyuan sourceIcon' wx:if='{{showSourceFlag}}'>
+        <text>{{item.source}}</text>
+      </view>    
+      <view class='iconfont icon-send-clock pubIcon'>
+        <text>{{item.pubDate}}</text>
+      </view>
+    </view>
+    
+    <view class="conRight btn-area flex-item">
+        <view class='iconfont icon-more more' data-index="{{itemIndex}}" bindtap="showNewsDetail"></view>
+    </view>
+  </view>  
 </view>
 
 <!-- <web-view src="http://sports.qq.com/a/20181013/008927.htm"></web-view> -->
+<!-- <web-view src="http://baijiahao.baidu.com/s?id=1614467948617412873&wfr=newsapp"></web-view> -->
 
-<!-- modal -->
+<!-- more-modal -->
 <modal title="新闻详情" confirm-text="确定" hidden="{{modalHidden}}" no-cancel bindconfirm="modalHide">
     <view>
-        <image class="news-avatar" src="http://gequ-music2.stor.sinaapp.com/LfzcSk1368693589.jpg" background-size="cover"></image>
+        <image class="news-avatar" src="http://img.027cgb.com/608987/logo.jpg" background-size="cover"></image>
     </view>
     <view>
         <text>标题: {{modalNewsContent.title}}</text>
     </view>
-    <!-- <view>
+    <view>
         <text>来源: {{modalNewsContent.source}}</text>
     </view>{{modalContent.imageurls[0].url}}
     <view>
         <text>发布于 {{modalNewsContent.pubDate}}</text>
-    </view> -->
-    
+    </view>    
     <view>
         详情: <text>{{modalNewsContent.desc}}</text>
-    </view><view>
+    </view>
+    <view>
         链接: <text>{{modalNewsContent.link}}</text>
     </view>
 </modal>

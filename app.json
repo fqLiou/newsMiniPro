@@ -1,8 +1,8 @@
 {
   "pages": [
+    "pages/index/index",
     "pages/news/news",
-    "pages/newsDetail/newsDetail",
-    "pages/index/index"
+    "pages/newsDetail/newsDetail"
   ],
   "window": {
     "backgroundTextStyle": "dark",

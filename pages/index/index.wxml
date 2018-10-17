@@ -3,7 +3,7 @@
   <view class="userinfo">
     <!-- <image class="userinfo-avatar" src="{{img}}" background-size="cover"></image> -->
     <image class="userinfo-avatar" src="../../images/logo.jpg" background-size="cover"></image>
-    <text>Hi, Welcome to news center</text>
+    <text>时事新闻，即刻出发</text>
   </view>
   <view>
     <!-- <image class='logo' src='../../img/logo.png'></image> -->

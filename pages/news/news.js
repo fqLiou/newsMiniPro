@@ -17,7 +17,6 @@ Page({
   onLoad: function (e) {
     var that = this;
     that.getNewsList('正在加载数据...');
-    console.log('e',e);
   },
   getNewsList: function (message) {
     var that = this;
@@ -47,7 +46,7 @@ Page({
           
           //showSourceFlag判断是否显示sourceIcon
           (value.source === "") ? (showSourceFlag = !1) : (showSourceFlag = !0);
-          
+
         });
 
         if (contentlist.length < that.data.pageSize) {
@@ -83,20 +82,14 @@ Page({
     wx.navigateTo({
       url: '../newsDetail/newsDetail?id=' + id
     })
-    console.log('id', id);
   },
   modalTap: function (e) {
     var that = this, index = Number(e.currentTarget.dataset.index);
-    console.log('index', index);
-
     this.setData({
-      // modalContent: that.data.data.hotnews[Number(e.currentTarget.dataset.index)],
-      // newsDetail: that.contentList[index],
       modalNewsContent: that.data.contentlist[index],
       modalHidden: false
     })
-    console.log('contentlist', that.data.contentlist[index]);
-    // console.log('url', that.data.contentlist[index].imageurls[0].url);
+    // console.log('contentlist', that.data.contentlist[index]);
   },
   modalHide: function(e) {
     this.setData({
@@ -118,7 +111,7 @@ Page({
         title: '没有更多数据',
       })
     }
-    console.log('已经是底部了');
+    // console.log('已经是底部了');
     // if (wx.pageScrollTo) {
     //   wx.pageScrollTo({
     //     scrollTop: 0

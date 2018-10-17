@@ -3,7 +3,7 @@
 var app = getApp()
 Page({
   data: {
-    welcome: "马上出发",
+    welcome: "点击进入",
     "username": "liou",
     current:0,
     img: "http://tva4.sinaimg.cn/crop.0.0.1080.1080.180/0066Db0Pjw8erk3vg33raj30u00u0jt0.jpg"
