@@ -10,16 +10,26 @@
   <view class='flex-wrp'>
       <view class='new-Photo flex-item'>
         <!-- <image mode='scaleToFill' src='../../images/logo.jpg'></image> -->
-        <image mode='scaleToFill' src='{{item.imageurls[0].url}}'></image>
+        <image mode='scaleToFill' src='{{item.imageurls[0].url}}' wx:if='{{!showDefaultThumb}}'></image>
+        <image src='http://img.027cgb.com/608987/logo.jpg' wx:if='{{showDefaultThumb}}'></image>
       </view>
       <view class='new-title flex-item'>
         <text class="new_title">{{ item.title }}</text>
       </view>     
   </view>
-  <view><text class="tag">标签：{{ item.channelName }}</text></view>
-  <view><text class="new_source">发布于 {{ item.pubDate }}, 来源 {{ item.source }}</text></view>
+  <!-- <view><text class="tag">标签：{{ item.channelName }}</text></view> -->
+  <view class='iconfont icon-biaoqian tagIcon'>
+    <text>{{item.channelName}}</text>
+  </view>
+  <view class='iconfont icon-laiyuan sourceIcon' wx:if='{{showSourceFlag}}'>
+    <text>{{item.source}}</text>
+  </view>    
+  <view class='iconfont icon-send-clock pubIcon'>
+    <text>{{item.pubDate}}</text>
+  </view>
   <view class="btn-area">
-      <button type="default" size="mini" data-index="{{itemIndex}}" bindtap="showNewsDetail">查看详情...</button>
+      <view class='iconfont icon-more more' data-index="{{itemIndex}}" bindtap="showNewsDetail"></view>
+      <!-- <button type="default" size="mini" data-index="{{itemIndex}}" bindtap="showNewsDetail">查看详情...</button> -->
   </view>
 </view>
 

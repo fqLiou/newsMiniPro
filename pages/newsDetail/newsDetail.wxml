@@ -13,8 +13,7 @@
   </view>
   <view class='new-content flex-item textLeft'>
     <text>{{newsObj.content}}</text>
-    <!-- <image src='http://img.027cgb.com/608987/logo.jpg
-'></image>     -->
+    <!-- <image src='http://img.027cgb.com/608987/logo.jpg'></image>     -->
   </view>
   <view class='flex-item iconfont icon-back backIcon' bindtap='backNewsList'>返回</view>
 </view>
@@ -23,7 +22,7 @@
   <view class='iconfont icon-shujuqueshi noContentIcon flex-item'></view>
   <view class='tipsText flex-item'>
     <text>
-      抱歉，此新闻内容缺失,点此返回
+      抱歉，该新闻内容缺失,点此返回
     </text>
   </view>
 </view>

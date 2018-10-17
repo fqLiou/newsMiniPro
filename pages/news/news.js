@@ -10,11 +10,14 @@ Page({
     hasMoreData: true,
     contentlist: [],
     modalHidden: true,
-    modalNewsContent: {}
+    modalNewsContent: {},
+    showSourceFlag:!1,
+    showDefaultThumb:!1
   },
-  onLoad: function () {
+  onLoad: function (e) {
     var that = this;
     that.getNewsList('正在加载数据...');
+    console.log('e',e);
   },
   getNewsList: function (message) {
     var that = this;
@@ -32,22 +35,40 @@ Page({
         if (that.data.page == 1) {
           contentlistTem = []
         }
-        var contentlist = res.showapi_res_body.pagebean.contentlist;
+        var contentlist = res.showapi_res_body.pagebean.contentlist,
+            showSourceFlag = !1,
+            thumbnail,
+            showDefaultThumb;
+        contentlist.forEach(function(value,index,arr){
+          // console.log('val', value);
+
+          //showDefaultThumb判断是否显示默认缩略图
+          (value.havePic) ? (showDefaultThumb = !1) : (showDefaultThumb = !0);
+          
+          //showSourceFlag判断是否显示sourceIcon
+          (value.source === "") ? (showSourceFlag = !1) : (showSourceFlag = !0);
+          
+        });
+
         if (contentlist.length < that.data.pageSize) {
           that.setData({
             contentlist: contentlistTem.concat(contentlist),
-            hasMoreData: false
+            hasMoreData: false,
+            showSourceFlag: showSourceFlag,
+            showDefaultThumb: showDefaultThumb
           })
         } else {
           that.setData({
             contentlist: contentlistTem.concat(contentlist),
             hasMoreData: true,
-            page: that.data.page + 1
+            page: that.data.page + 1,
+            showSourceFlag: showSourceFlag,
+            showDefaultThumb: showDefaultThumb
           })
         }
       } else {//失败
         wx.showToast({
-          title: res.showapi_res_error,
+          title: res.showapi_res_error
         })
       }
     }, function (res) {
