@@ -11,9 +11,9 @@ Page({
     contentlist: [],
     modalHidden: true,
     modalNewsContent: {},
-    showSourceFlag:!1,
-    showDefaultThumb:!1,
-    showTipFlag:!1
+    showTipFlag:!1,
+    defaultSource:'',
+    defaultThumb:''
   },
   onLoad: function (e) {
     var that = this;
@@ -40,35 +40,35 @@ Page({
           contentlistTem = []
         }
         var contentlist = res.showapi_res_body.pagebean.contentlist,
-            showSourceFlag = !1,
             thumbnail,
-            showDefaultThumb,
-            showTipFlag;
-        contentlist.forEach(function(value,index,arr){
-          // console.log('val', value);
+            showTipFlag,
+            defaultSource = '时事新闻',
+            defaultThumb = 'http://img.027cgb.com/608987/logo.jpg';
+        // contentlist.forEach(function(value,index,arr){
+        //   // console.log('val', value);
 
-          //showDefaultThumb判断是否显示默认缩略图
-          (value.havePic) ? (showDefaultThumb = !1) : (showDefaultThumb = !0);
+        //   //showDefaultThumb判断是否显示默认缩略图
+        //   (value.havePic) ? (showDefaultThumb = !1) : (showDefaultThumb = !0);
           
-          //showSourceFlag判断是否显示sourceIcon
-          (value.source === "") ? (showSourceFlag = !1) : (showSourceFlag = !0);
+        //   //showSourceFlag判断是否显示sourceIcon
+        //   (value.source === "") ? (showSourceFlag = !1) : (showSourceFlag = !0);
 
-        });
-
+        // });
+        
         if (contentlist.length < that.data.pageSize) {
           that.setData({
             contentlist: contentlistTem.concat(contentlist),
             hasMoreData: false,
-            showSourceFlag: showSourceFlag,
-            showDefaultThumb: !1
+            defaultSource: defaultSource,
+            defaultThumb: defaultThumb
           })
         } else {
           that.setData({
             contentlist: contentlistTem.concat(contentlist),
             hasMoreData: true,
             page: that.data.page + 1,
-            showSourceFlag: showSourceFlag,
-            showDefaultThumb: !1
+            defaultSource: defaultSource,
+            defaultThumb: defaultThumb
           })
         }
       } else {//失败

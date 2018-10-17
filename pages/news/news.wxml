@@ -9,8 +9,8 @@
 <view class="newsContainer" wx:for="{{contentlist}}" wx:for-index="itemIndex">
   <view class='flex-wrp'>
       <view class='new-Photo flex-item'>
-        <image mode='scaleToFill' src='{{item.imageurls[0].url}}' wx:if='{{!showDefaultThumb}}'></image>
-        <image src='http://img.027cgb.com/608987/logo.jpg' wx:if='{{showDefaultThumb}}'></image>
+        <image mode='scaleToFill' src='{{item.imageurls[0].url || defaultThumb}}'></image>
+        <!-- <image src='http://img.027cgb.com/608987/logo.jpg' wx:if='{{showDefaultThumb}}'></image> -->
       </view>
       <view class='new-title flex-item'>
         <text class="new_title">{{ item.title }}</text>        
@@ -23,8 +23,8 @@
 
   <view class='flex-col'>
     <view class='conLeft flex-item'>
-      <view class='iconfont icon-laiyuan sourceIcon' wx:if='{{showSourceFlag}}'>
-        <text>{{item.source}}</text>
+      <view class='iconfont icon-laiyuan sourceIcon'>
+        <text>{{item.source || defaultSource}}</text>
       </view>    
       <view class='iconfont icon-send-clock pubIcon'>
         <text>{{item.pubDate}}</text>
@@ -49,7 +49,7 @@
     </view>
     <view>
         <text>来源: {{modalNewsContent.source}}</text>
-    </view>{{modalContent.imageurls[0].url}}
+    </view>
     <view>
         <text>发布于 {{modalNewsContent.pubDate}}</text>
     </view>    
