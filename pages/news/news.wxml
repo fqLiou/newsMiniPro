@@ -9,12 +9,12 @@
 <view class="newsContainer" wx:for="{{contentlist}}" wx:for-index="itemIndex">
   <view class='flex-wrp'>
       <view class='new-Photo flex-item'>
-        <!-- <image mode='scaleToFill' src='../../images/logo.jpg'></image> -->
         <image mode='scaleToFill' src='{{item.imageurls[0].url}}' wx:if='{{!showDefaultThumb}}'></image>
         <image src='http://img.027cgb.com/608987/logo.jpg' wx:if='{{showDefaultThumb}}'></image>
       </view>
       <view class='new-title flex-item'>
-        <text class="new_title">{{ item.title }}</text>
+        <text class="new_title">{{ item.title }}</text>        
+        <!-- <text class="new_title" wx:for-items='{{contentlist}}' wx:key='title'>{{ item.title }}</text> -->
       </view>     
   </view>
   <view class='iconfont icon-biaoqian tagIcon'>
@@ -36,7 +36,6 @@
     </view>
   </view>  
 </view>
-
 <!-- <web-view src="http://sports.qq.com/a/20181013/008927.htm"></web-view> -->
 <!-- <web-view src="http://baijiahao.baidu.com/s?id=1614467948617412873&wfr=newsapp"></web-view> -->
 
@@ -61,3 +60,14 @@
         链接: <text>{{modalNewsContent.link}}</text>
     </view>
 </modal>
+
+
+<!-- content内容为空，显示提示 -->
+<view class='flex-col-tip' wx:if='{{showTipFlag}}' bindtap='refresh'>  
+  <view class='iconfont icon-shujuqueshi noContentIcon'></view>
+  <view class='tipsText'>
+    <text>
+      抱歉，获取数据失败，点击刷新
+    </text>
+  </view>
+</view>

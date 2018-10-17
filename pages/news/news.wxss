@@ -82,6 +82,7 @@ page {
   right: 10px;
   margin-top: 20px;
   font-size: 16px;
+  /* text-shadow: 1px 2px 2px #585858; */
 }
 .sourceIcon,.pubIcon,.tagIcon{
   display: inline-block;
@@ -114,4 +115,20 @@ page {
     color: #0e61af;
     padding-top: 10rpx;
     width: 100%;
+}
+
+/* tips */
+.flex-col-tip{
+  display: flex;
+  flex-direction:column;
+  padding: 38rpx 30rpx;
+}
+.noContentIcon{
+  margin-top: 50%;
+  font-size: 80px;
+  text-align: center;
+}
+.tipsText{
+  text-align: center;
+  font-size: 16px;
 }

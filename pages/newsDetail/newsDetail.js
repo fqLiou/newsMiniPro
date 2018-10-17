@@ -9,6 +9,7 @@ Page({
     id:'',
     showSourceFlag:!0,
     showContentFlag:!0,
+    showNewsImgFlag:!1,
     newsObj:{}
   },
 
@@ -48,19 +49,24 @@ Page({
     }
     network.requestLoading('http://route.showapi.com/109-35', data, message, function (res) {
       console.log('res', res);      
-      var contentlistTem = that.data.contentlist, showSourceFlag = !0, showContentFlag = !0, conRegExp = /使用前务请仔细阅读法律声明/g;
+      var contentlistTem = that.data.contentlist, showSourceFlag = !0, showContentFlag = !0, conRegExp = /使用前务请仔细阅读法律声明/g, showNewsImgFlag;
       if (res.showapi_res_code == 0) {//易源接口返回标志,0为成功，其他为失败。
         var newsObj = res.showapi_res_body.pagebean.contentlist[0];
 
         //showSourceFlag判断是否显示sourceIcon
         (newsObj.source === "") ? (showSourceFlag = !1) : (showSourceFlag = !0);
+
+        //showNewsImgFlag判断是否显示新闻详情图片
+        (newsObj.havePic) ? (showNewsImgFlag = !0) : (showNewsImgFlag = !1);
+        
         //showContentFlag用于判断是否显示content，判断规则:如果content为空或者content为政务网返回数据，showContentFlag为false
         ((newsObj.content === "") || (conRegExp.test(newsObj.content))) ? (showContentFlag = !1) : (showContentFlag = !0); 
 
         that.setData({
           newsObj: newsObj,
           showSourceFlag: showSourceFlag,
-          showContentFlag: showContentFlag
+          showContentFlag: showContentFlag,
+          showNewsImgFlag: showNewsImgFlag
         })
         console.log('newsObj', newsObj);
       } else {//失败

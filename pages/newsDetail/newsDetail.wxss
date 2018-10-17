@@ -40,10 +40,22 @@
   margin-left: 4px;
 }
 .new-content{
-  text-indent: 30rpx;
   font-size: 18px;
-  line-height: 1.6em;
-  /* font-weight: lighter; */
+}
+.new-content image.contentImg{
+  margin-left: 5%;
+  text-align: center;
+  width: 90%;
+  height: 200px;
+  border-radius: 6px;
+  box-shadow:5px 2px 2px #585858;
+}
+.new-content .contentTxt{ 
+  display: inline-block;
+  text-indent: 30rpx;
+  line-height: 1.7em; 
+  word-spacing:10rpx;
+  font-weight: 100;
 }
 .noContentIcon{
   margin-top: 50%;
@@ -58,4 +70,10 @@
   margin: 15px 14px 0 0;
   display: inline-block;
   text-align: right;
+}
+/* 缺省页 */
+.flex-col{
+  display: flex;
+  flex-direction:column;
+  padding: 38rpx 30rpx;
 }

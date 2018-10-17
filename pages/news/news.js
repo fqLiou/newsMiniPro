@@ -12,11 +12,16 @@ Page({
     modalHidden: true,
     modalNewsContent: {},
     showSourceFlag:!1,
-    showDefaultThumb:!1
+    showDefaultThumb:!1,
+    showTipFlag:!1
   },
   onLoad: function (e) {
     var that = this;
     that.getNewsList('正在加载数据...');
+  },
+  refresh: function () {
+    var that = this;
+    that.getNewsList('正在加载数据...');    
   },
   getNewsList: function (message) {
     var that = this;
@@ -37,7 +42,8 @@ Page({
         var contentlist = res.showapi_res_body.pagebean.contentlist,
             showSourceFlag = !1,
             thumbnail,
-            showDefaultThumb;
+            showDefaultThumb,
+            showTipFlag;
         contentlist.forEach(function(value,index,arr){
           // console.log('val', value);
 
@@ -54,7 +60,7 @@ Page({
             contentlist: contentlistTem.concat(contentlist),
             hasMoreData: false,
             showSourceFlag: showSourceFlag,
-            showDefaultThumb: showDefaultThumb
+            showDefaultThumb: !1
           })
         } else {
           that.setData({
@@ -62,13 +68,17 @@ Page({
             hasMoreData: true,
             page: that.data.page + 1,
             showSourceFlag: showSourceFlag,
-            showDefaultThumb: showDefaultThumb
+            showDefaultThumb: !1
           })
         }
       } else {//失败
         wx.showToast({
           title: res.showapi_res_error
         })
+        that.setData({
+          showTipFlag: !0
+        })
+
       }
     }, function (res) {
       wx.showToast({
