@@ -6,7 +6,7 @@ var root = getApp()
 Page({
   data: {
     // navTab: ["全部新闻", "体育新闻", "科技新闻", "财经新闻", "娱乐新闻", "游戏新闻", "社会新闻", "娱乐新闻", "游戏新闻", "社会新闻"],
-    navTab: ["全部新闻", "体育", "科技", "财经", "娱乐", "游戏", "社会", "财经", "娱乐", "游戏", "社会"],
+    navTab: ["全部新闻", "国内","国际", "体育","国足","科技", "电视", "娱乐", "游戏", "社会","女人","教育","综合体育"],
     // 
     currentNavtab:0,
     page: 1,
@@ -48,8 +48,8 @@ Page({
             showTipFlag,
             defaultSource = '时事新闻',
             defaultThumb = 'http://img.027cgb.com/608987/logo.jpg';
-        // contentlist.forEach(function(value,index,arr){
-        //   // console.log('val', value);
+        contentlist.forEach(function(value,index,arr){
+          console.log('val', value.channelName);
 
         //   //showDefaultThumb判断是否显示默认缩略图
         //   (value.havePic) ? (showDefaultThumb = !1) : (showDefaultThumb = !0);
@@ -57,8 +57,8 @@ Page({
         //   //showSourceFlag判断是否显示sourceIcon
         //   (value.source === "") ? (showSourceFlag = !1) : (showSourceFlag = !0);
 
-        // });
-        
+        });
+        // console.log(contentlist.channelName);
         if (contentlist.length < that.data.pageSize) {
           that.setData({
             contentlist: contentlistTem.concat(contentlist),

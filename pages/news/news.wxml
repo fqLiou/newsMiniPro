@@ -1,21 +1,15 @@
 <!--news.wxml-->
 <!--news-tab -->
 <view class="top-tab flex flex-tab">
-
-  <!-- <view class="toptab flexItem {{currentNavtab==idx ? 'active' : ''}}" wx:for="{{navTab}}" wx:for-index="idx" wx:for-item="itemName" data-idx="{{idx}}" bindtap="switchTab">
-    {{itemName}}
-  </view> -->
-
   <scroll-view scroll-x class='scrollViewX'>
     <view class="toptab flexItem {{currentNavtab==idx ? 'active' : ''}}" wx:for-items="{{navTab}}" wx:key="itemName" wx:for-index="idx" wx:for-item="itemName" data-idx="{{idx}}" bindtap="switchTab">
       {{itemName}}
     </view>
-  </scroll-view> 
-
-  <!--  {{currentNavtab==idx ? 'active' : ''}} -->
-
+  </scroll-view>
 </view>
-
+<!-- <view class="ctnt1 placehold" hidden="{{currentNavtab==1 ? '' : true}}">
+  <text>赞与感谢</text>
+</view> -->
 <!-- banner -->
 <!-- <view class='banner'>
   <image src='http://img.027cgb.com/608987/banner.gif'></image>
@@ -23,7 +17,7 @@
 </view> -->
 
 <!--news-list-->
-<view class="newsContainer" wx:for="{{contentlist}}" wx:for-index="itemIndex" data-index="{{itemIndex}}" bindtap="showNewsDetail">
+<view class="newsContainer" wx:if="{{currentNavtab==0 ? true : ''}}" wx:for="{{contentlist}}" wx:for-index="itemIndex" data-index="{{itemIndex}}" bindtap="showNewsDetail">
   <view class='flex-wrp'>
       <view class='new-Photo flex-item'>
         <image mode='scaleToFill' src='{{item.imageurls[0].url || defaultThumb}}'></image>
@@ -76,7 +70,6 @@
         链接: <text>{{modalNewsContent.link}}</text>
     </view>
 </modal>
-
 
 <!-- content内容为空，显示提示 -->
 <view class='flex-col-tip' wx:if='{{showTipFlag}}' bindtap='refresh'>  
