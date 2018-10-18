@@ -100,14 +100,14 @@ page{
   align-items: stretch;
 }
 .top-tab{
-  /* width: 750rpx; */
-  width: 100%;
+  width: 750rpx;
+  /* width:100%; */
   height: 100rpx;
   background: #566CD1;
-  color: #fff;
+  color: #ddd;
   font-size: 28rpx;
   line-height: 100rpx;
-  box-shadow: 0 2px 2px #bebebe;
+  /* box-shadow: 0 2px 2px #bebebe; */
   margin: 0 0 4rpx 0;
   position: fixed;
   /* padding: 4rpx; */
@@ -119,11 +119,14 @@ page{
   overflow:hidden;
   white-space: nowrap;
 }
-.toptab{
+.scrollViewX .toptab{
   display: inline-block;  
-  margin-right: 12rpx;
+  margin-right: 18rpx;
+  height:92%;
+  padding: 0 10rpx;
+  /* border: 1px solid red; */
 }
-.toptab.active{
+.scrollViewX .toptab.active{
   color: #ffffff;
-  border-bottom: solid 2px red;
+  border-bottom: solid 5px #fff;
 }
