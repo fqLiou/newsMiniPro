@@ -5,9 +5,8 @@ var root = getApp()
 
 Page({
   data: {
-    // navTab: ["全部新闻", "体育新闻", "科技新闻", "财经新闻", "娱乐新闻", "游戏新闻", "社会新闻", "娱乐新闻", "游戏新闻", "社会新闻"],
     navTab: ["全部新闻", "国内","国际", "体育","国足","科技", "电视", "娱乐", "游戏", "社会","女人","教育","综合体育"],
-    // 
+    channel:'',
     currentNavtab:0,
     page: 1,
     pageSize: 10,
@@ -27,15 +26,22 @@ Page({
     var that = this;
     that.getNewsList('正在加载数据...');    
   },
-  getNewsList: function (message) {
-    var that = this;
-    var data = {
-      showapi_appid: '77349',
-      showapi_sign: 'dbb68fdcae714f3e8e6bd22e4135ee3c',
-      maxResult: '10',
-      page: that.data.page,
-      needContent:1
-    }
+  getNewsList: function (message) {//加载新闻列表
+    var that = this,
+        // data = {
+        //   showapi_appid: '77349',//lioufq
+        //   showapi_sign: 'dbb68fdcae714f3e8e6bd22e4135ee3c',
+        //   maxResult: '10',
+        //   page: that.data.page,
+        //   needContent:1
+        // }
+        data = {
+          showapi_appid: '77805',//fqLiou
+          showapi_sign: '3afe36bdf06c480693bb135eac25a23e',
+          maxResult: '10',
+          page: that.data.page,
+          needContent: 1
+        }
     network.requestLoading('http://route.showapi.com/109-35', data, message, function (res) {
       console.log('res',res);
       var contentlistTem = that.data.contentlist;
@@ -48,16 +54,9 @@ Page({
             showTipFlag,
             defaultSource = '时事新闻',
             defaultThumb = 'http://img.027cgb.com/608987/logo.jpg';
-        contentlist.forEach(function(value,index,arr){
-          console.log('val', value.channelName);
-
-        //   //showDefaultThumb判断是否显示默认缩略图
-        //   (value.havePic) ? (showDefaultThumb = !1) : (showDefaultThumb = !0);
-          
-        //   //showSourceFlag判断是否显示sourceIcon
-        //   (value.source === "") ? (showSourceFlag = !1) : (showSourceFlag = !0);
-
-        });
+        // contentlist.forEach(function(value,index,arr){
+        //   console.log('val', value.channelName);
+        // });
         // console.log(contentlist.channelName);
         if (contentlist.length < that.data.pageSize) {
           that.setData({
@@ -88,16 +87,15 @@ Page({
       wx.showToast({
         title: '加载数据失败',
       })
-
     })
   },
-  showNewsDetail: function(e){
+  showNewsDetail: function(e){//详情页面跳转
     var that = this, index = Number(e.currentTarget.dataset.index), id = that.data.contentlist[index].id;
     wx.navigateTo({
       url: '../newsDetail/newsDetail?id=' + id
     })
   },
-  modalTap: function (e) {
+  modalTap: function (e) {//模态框
     var that = this, index = Number(e.currentTarget.dataset.index);
     this.setData({
       modalNewsContent: that.data.contentlist[index],
@@ -105,45 +103,155 @@ Page({
     })
     // console.log('contentlist', that.data.contentlist[index]);
   },
-  modalHide: function(e) {
+  modalHide: function (e) {//模态框
     this.setData({
       modalHidden: true
     })
   },
-  onPullDownRefresh: function (){//下拉刷新数据
-    this.data.page = 1
-    this.getNewsList('正在刷新数据');
-    setTimeout(function(){
-      wx.stopPullDownRefresh();//停止当前页面下拉刷新
-    },600);
-  },
-  onReachBottom: function (currentPage){//上拉触底
-    if (this.data.hasMoreData) {
-      this.getNewsList('加载更多数据')
-    } else {
-      wx.showToast({
-        title: '没有更多数据',
-      })
-    }
-    // console.log('已经是底部了');
-    // if (wx.pageScrollTo) {
-    //   wx.pageScrollTo({
-    //     scrollTop: 0
-    //   })
-    // } else {
-    //   wx.showModal({
-    //     title: '提示',
-    //     content: '当前微信版本过低，无法使用该功能，请升级到最新微信版本后重试。'
-    //   })
-    // }
-  },
-  switchTab: function (e) {
-    console.log('e',e);
+  switchTab: function (e) {//切换tab
+    var that = this,
+        index = e.currentTarget.dataset.idx,
+        channelName,
+        message = '正在加载数据...',
+        channelArr = ["全部新闻", "国内最新", "国际最新", "体育最新", "国内足球最新", "科技最新", "电视最新", "娱乐最新", "游戏最新", "社会最新", "女人最新", "教育最新", "综合体育最新"];
     this.setData({
       currentNavtab: e.currentTarget.dataset.idx
     });
+    switch(index) {
+      case 0://全部新闻
+        channelName = channelArr[0];
+        that.setData({
+          channel: channelName
+        })
+        that.getNewsListByTab(message, channelName, !0, !0);
+        break;
+      case 1://国内最新
+        channelName = channelArr[1];
+        that.setData({
+          channel: channelName
+        })
+        that.getNewsListByTab(message, channelName, !0, !0);
+        break;
+      case 2://国际最新
+        channelName = channelArr[2];
+        that.setData({
+          channel: channelName
+        })
+        that.getNewsListByTab(message, channelName, !0, !0);
+        break;
+      
+
+    }
+  },
+  getNewsListByTab: function (message, channelName, needReset, needToTop){
+    //根据标签获取新闻列表：message为提示消息，channelName为标签，needReset为需要重置数据，needToTop为需要滚动置顶
+    var that = this,
+        // data = {//lioufq
+        //   showapi_appid: '77349',
+        //   showapi_sign: 'dbb68fdcae714f3e8e6bd22e4135ee3c',
+        //   maxResult: '10',
+        //   page: that.data.page,
+        //   needContent: 1
+        // }
+      data = {
+        showapi_appid: '77805',//fqLiou
+        showapi_sign: '3afe36bdf06c480693bb135eac25a23e',
+        maxResult: '10',
+        page: that.data.page,
+        needContent: 1
+      }
+    if (needReset) {
+      that.resetData();
+    }
+    if (needToTop) {
+      that.scrollToTop();
+    }
+    if (channelName !== '全部新闻'){
+      data.channelName = channelName
+    }
+    network.requestLoading('http://route.showapi.com/109-35', data, message, function (res) {
+      console.log('res', res);
+      var contentlistTem = that.data.contentlist;
+      if (res.showapi_res_code == 0) {//易源接口返回标志,0为成功，其他为失败。
+        if (that.data.page == 1) {
+          contentlistTem = []
+        }
+        var contentlist = res.showapi_res_body.pagebean.contentlist,
+          thumbnail,
+          showTipFlag,
+          defaultSource = '时事新闻',
+          defaultThumb = 'http://img.027cgb.com/608987/logo.jpg';
+        // contentlist.forEach(function (value, index, arr) {
+        //   console.log('val', value.channelName);
+        // });
+        // console.log(contentlist.channelName);
+        if (contentlist.length < that.data.pageSize) {
+          that.setData({
+            contentlist: contentlistTem.concat(contentlist),
+            hasMoreData: false,
+            defaultSource: defaultSource,
+            defaultThumb: defaultThumb
+          })
+        } else {
+          that.setData({
+            contentlist: contentlistTem.concat(contentlist),
+            hasMoreData: true,
+            page: that.data.page + 1,
+            defaultSource: defaultSource,
+            defaultThumb: defaultThumb
+          })
+        }
+      } else {//请求失败
+        wx.showToast({
+          title: res.showapi_res_error
+        })
+        that.setData({
+          showTipFlag: !0 //展示提示
+        })
+
+      }
+    }, function (res) {
+      wx.showToast({
+        title: '加载数据失败',
+      })
+    })
+  },
+  resetData:function(){//重置数据
+    var that = this;
+    that.setData({
+      contentlist: []
+    })
+  },
+  onPullDownRefresh: function () {//下拉刷新加载数据
+    var that = this, channel = that.data.channel, needReset = !1, needToTop = !1;
+    this.data.page = 1
+    // this.getNewsList('正在刷新数据');
+    this.getNewsListByTab('加载更多数据', channel, needReset, needToTop);
+    setTimeout(function () {
+      wx.stopPullDownRefresh();//停止当前页面下拉刷新
+    }, 600);
+  },
+  onReachBottom: function () {//上拉触底加载更多数据
+    var that = this, channel = that.data.channel, needReset = !1, needToTop = !1;
+    if (this.data.hasMoreData) {
+      // this.getNewsList('加载更多数据');
+      this.getNewsListByTab('加载更多数据', channel, needReset, needToTop);
+    } else {
+      wx.showToast({
+        title: '没有更多数据'
+      })
+    }  
+  },
+  scrollToTop:function(){//滚动置顶
+    if (wx.pageScrollTo) {
+      wx.pageScrollTo({
+        scrollTop: 0
+      })
+    } else {
+      wx.showModal({
+        title: '提示',
+        content: '当前微信版本过低，无法使用该功能，请升级到最新微信版本后重试。'
+      })
+    }
   }
-  // contentLimit: function(content) {
-  //   return content.substr(20)
-  // }
 })
