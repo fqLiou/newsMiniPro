@@ -5,6 +5,10 @@ var root = getApp()
 
 Page({
   data: {
+    // navTab: ["全部新闻", "体育新闻", "科技新闻", "财经新闻", "娱乐新闻", "游戏新闻", "社会新闻", "娱乐新闻", "游戏新闻", "社会新闻"],
+    navTab: ["全部新闻", "体育", "科技", "财经", "娱乐", "游戏", "社会", "财经", "娱乐", "游戏", "社会"],
+    // 
+    currentNavtab:0,
     page: 1,
     pageSize: 10,
     hasMoreData: true,
@@ -132,6 +136,12 @@ Page({
     //     content: '当前微信版本过低，无法使用该功能，请升级到最新微信版本后重试。'
     //   })
     // }
+  },
+  switchTab: function (e) {
+    console.log('e',e);
+    this.setData({
+      currentNavtab: e.currentTarget.dataset.idx
+    });
   }
   // contentLimit: function(content) {
   //   return content.substr(20)

@@ -1,4 +1,8 @@
 /* pages/newsDetail/newsDetail.wxss */
+/* page */
+page,view{
+  font-family: arial,'pingfang sc',stheiti,"microsoft yahei",sans-serif;
+}
 .flex-wrp{
   display: flex;
   flex-direction:column;

@@ -1,16 +1,32 @@
 <!--news.wxml-->
 <!--news-tab -->
-<!-- <view class="top-tab flex-wrp flex-tab">
-  <view class="toptab flex-item {{currentNavtab==idx ? 'active' : ''}}" wx:for="{{navTab}}" wx:for-index="idx" wx:for-item="itemName" data-idx="{{idx}}" bindtap="switchTab">
-    1
-  </view>
+<view class="top-tab flex flex-tab">
+
+  <!-- <view class="toptab flexItem {{currentNavtab==idx ? 'active' : ''}}" wx:for="{{navTab}}" wx:for-index="idx" wx:for-item="itemName" data-idx="{{idx}}" bindtap="switchTab">
+    {{itemName}}
+  </view> -->
+
+  <scroll-view scroll-x class='scrollViewX'>
+    <view class="toptab flexItem active" wx:for-items="{{navTab}}" wx:key="itemName" wx:for-index="idx" wx:for-item="itemName" data-idx="{{idx}}" bindtap="switchTab">
+      {{itemName}}
+    </view>
+  </scroll-view> 
+
+  <!--  {{currentNavtab==idx ? 'active' : ''}} -->
+
+</view>
+
+<!-- banner -->
+<!-- <view class='banner'>
+  <image src='http://img.027cgb.com/608987/banner.gif'></image>
+  <image src='http://img.027cgb.com/608987/logo.jpg'></image>
 </view> -->
+
 <!--news-list-->
-<view class="newsContainer" wx:for="{{contentlist}}" wx:for-index="itemIndex">
+<view class="newsContainer" wx:for="{{contentlist}}" wx:for-index="itemIndex" data-index="{{itemIndex}}" bindtap="showNewsDetail">
   <view class='flex-wrp'>
       <view class='new-Photo flex-item'>
         <image mode='scaleToFill' src='{{item.imageurls[0].url || defaultThumb}}'></image>
-        <!-- <image src='http://img.027cgb.com/608987/logo.jpg' wx:if='{{showDefaultThumb}}'></image> -->
       </view>
       <view class='new-title flex-item'>
         <text class="new_title">{{ item.title }}</text>        

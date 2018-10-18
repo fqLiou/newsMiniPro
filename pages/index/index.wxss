@@ -1,24 +1,33 @@
 /**index.wxss**/
-.userinfo {
+/* page */
+page{
+  background: #566CD1;
+  font-family: arial,'pingfang sc',stheiti,"microsoft yahei",sans-serif;
+}
+.sign {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.userinfo-avatar {
+.sign-thumbnail {
   width: 288rpx;
   height: 288rpx;
   margin: 10rpx;
   margin-bottom: 120rpx;
   border-radius: 50%;
 }
-
-.userinfo-nickname {
+.sign-txt{
+  color: #fff;
+}
+.sign-nickname {
   color: #aaa;
 }
 
-.usermotto {
+.sing-btn {
   margin-top: 180px;
+  background:#fff;
+  color:#566CD1;
 }
 
 page, view {
@@ -39,5 +48,5 @@ page, view {
   margin: 0 5px;
 }
 .load text.sct {
-  background-color: #EEAE26;
+  background-color: #fff;
 }

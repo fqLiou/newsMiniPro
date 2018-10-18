@@ -15,6 +15,7 @@
     <!-- <image src='http://img.027cgb.com/608987/logo.jpg' class='contentImg'></image>-->
     <image src='{{newsObj.imageurls[0].url}}' class='contentImg' wx:if='{{showNewsImgFlag}}'></image>
     <text class='contentTxt'>{{newsObj.content}}</text> 
+    <!-- <web-view src="{{newsObj.link}}"></web-view> -->
   </view>
   <view class='flex-item iconfont icon-back backIcon' bindtap='backNewsList'>返回</view>
 </view>

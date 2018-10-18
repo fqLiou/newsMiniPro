@@ -1,9 +1,9 @@
 <!--index.wxml-->
 <view class="container">
-  <view class="userinfo">
+  <view class="sign">
     <!-- <image class="userinfo-avatar" src="{{img}}" background-size="cover"></image> -->
-    <image class="userinfo-avatar" src="http://img.027cgb.com/608987/logo.jpg" background-size="cover"></image>
-    <text>时事新闻，即刻出发</text>
+    <image class="sign-thumbnail" src="http://img.027cgb.com/608987/logo.jpg" background-size="cover"></image>
+    <text class='sign-txt'>时事新闻，即刻出发</text>
   </view>
   <view>
     <!-- <image class='logo' src='../../img/logo.png'></image> -->
@@ -14,7 +14,7 @@
       <text class='{{current == 3 ? "sct": ""}}'></text>
     </view>
   </view>
-  <view class="usermotto">
-    <button type="primary" class="user-motto" bindtap="bindViewTap">{{welcome}}</button>
+  <view class="singBtn">
+    <button class="sing-btn" bindtap="bindViewTap">{{welcome}}</button>
   </view>
 </view>
