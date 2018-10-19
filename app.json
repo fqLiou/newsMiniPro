@@ -5,7 +5,7 @@
     "pages/newsDetail/newsDetail"
   ],
   "window": {
-    "backgroundColor":"#566CD1",
+    "backgroundColor": "#566CD1",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#566CD1",
     "navigationBarTitleText": "最新新闻",

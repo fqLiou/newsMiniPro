@@ -7,114 +7,45 @@
     </view>
   </scroll-view>
 </view>
-<!-- <view class="ctnt1 placehold" hidden="{{currentNavtab==1 ? '' : true}}">
-  <text>赞与感谢</text>
-</view> -->
+
 <!-- banner -->
 <!-- <view class='banner'>
   <image src='http://img.027cgb.com/608987/banner.gif'></image>
   <image src='http://img.027cgb.com/608987/logo.jpg'></image>
 </view> -->
 
-<!--news-list-全部新闻-->
-<view class="newsContainer" wx:if="{{currentNavtab==0 ? true : false}}" wx:for="{{contentlist}}" wx:for-index="itemIndex" data-index="{{itemIndex}}" bindtap="showNewsDetail">
-  <view class='flex-wrp'>
-      <view class='new-Photo flex-item'>
-        <image mode='scaleToFill' src='{{item.imageurls[0].url || defaultThumb}}'></image>
-      </view>
-      <view class='new-title flex-item'>
-        <text class="new_title">{{ item.title }}</text>        
-        <!-- <text class="new_title" wx:for-items='{{contentlist}}' wx:key='title'>{{ item.title }}</text> -->
-      </view>     
-  </view>
-  <view class='iconfont icon-biaoqian tagIcon'>
-    <text>{{item.channelName}}</text>
-  </view>
+<!--news-list-默认显示全部新闻-->
+<view class="newsContainerWrap">
+  <view class="newsContainer" wx:for="{{contentlist}}" wx:for-index="itemIndex" data-index="{{itemIndex}}" bindtap="showNewsDetail">
+    <view class='flex-wrp'>
+        <view class='new-Photo flex-item'>
+          <image mode='scaleToFill' src='{{item.imageurls[0].url || defaultThumb}}'></image>
+        </view>
+        <view class='new-title flex-item'>
+          <text class="new_title">{{ item.title }}</text>        
+        </view>     
+    </view>
+    <view class='iconfont icon-biaoqian tagIcon'>
+      <text>{{item.channelName}}</text>
+    </view>
 
-  <view class='flex-col'>
-    <view class='conLeft flex-item'>
-      <view class='iconfont icon-laiyuan sourceIcon'>
-        <text>{{item.source || defaultSource}}</text>
-      </view>    
-      <view class='iconfont icon-send-clock pubIcon'>
-        <text>{{item.pubDate}}</text>
+    <view class='flex-col'>
+      <view class='conLeft flex-item'>
+        <view class='iconfont icon-laiyuan sourceIcon'>
+          <text>{{item.source || defaultSource}}</text>
+        </view>    
+        <view class='iconfont icon-send-clock pubIcon'>
+          <text>{{item.pubDate}}</text>
+        </view>
       </view>
-    </view>
-    
-    <view class="conRight btn-area flex-item">
-        <view class='iconfont icon-more more' data-index="{{itemIndex}}" bindtap="showNewsDetail"></view>
-    </view>
-  </view>  
+      
+      <view class="conRight btn-area flex-item">
+          <view class='iconfont icon-more more' data-index="{{itemIndex}}"></view>
+           <!-- bindtap="showNewsDetail" -->
+      </view>
+    </view>  
+  </view>
 </view>
-
-
-<!--news-list-国内-->
-<view class="newsContainer" wx:if="{{currentNavtab==1 ? true : false}}" wx:for="{{contentlist}}" wx:for-index="itemIndex" data-index="{{itemIndex}}" bindtap="showNewsDetail">
-  <view class='flex-wrp'>
-      <view class='new-Photo flex-item'>
-        <image mode='scaleToFill' src='{{item.imageurls[0].url || defaultThumb}}'></image>
-      </view>
-      <view class='new-title flex-item'>
-        <text class="new_title">{{ item.title }}</text>        
-        <!-- <text class="new_title" wx:for-items='{{contentlist}}' wx:key='title'>{{ item.title }}</text> -->
-      </view>     
-  </view>
-  <view class='iconfont icon-biaoqian tagIcon'>
-    <text>{{item.channelName}}</text>
-  </view>
-
-  <view class='flex-col'>
-    <view class='conLeft flex-item'>
-      <view class='iconfont icon-laiyuan sourceIcon'>
-        <text>{{item.source || defaultSource}}</text>
-      </view>    
-      <view class='iconfont icon-send-clock pubIcon'>
-        <text>{{item.pubDate}}</text>
-      </view>
-    </view>
-    
-    <view class="conRight btn-area flex-item">
-        <view class='iconfont icon-more more' data-index="{{itemIndex}}" bindtap="showNewsDetail"></view>
-    </view>
-  </view>  
-</view>
-
-
-<!--news-list-国际-->
-<view class="newsContainer" wx:if="{{currentNavtab==2 ? true : false}}" wx:for="{{contentlist}}" wx:for-index="itemIndex" data-index="{{itemIndex}}" bindtap="showNewsDetail">
-  <view class='flex-wrp'>
-      <view class='new-Photo flex-item'>
-        <image mode='scaleToFill' src='{{item.imageurls[0].url || defaultThumb}}'></image>
-      </view>
-      <view class='new-title flex-item'>
-        <text class="new_title">{{ item.title }}</text>        
-        <!-- <text class="new_title" wx:for-items='{{contentlist}}' wx:key='title'>{{ item.title }}</text> -->
-      </view>     
-  </view>
-  <view class='iconfont icon-biaoqian tagIcon'>
-    <text>{{item.channelName}}</text>
-  </view>
-
-  <view class='flex-col'>
-    <view class='conLeft flex-item'>
-      <view class='iconfont icon-laiyuan sourceIcon'>
-        <text>{{item.source || defaultSource}}</text>
-      </view>    
-      <view class='iconfont icon-send-clock pubIcon'>
-        <text>{{item.pubDate}}</text>
-      </view>
-    </view>
-    
-    <view class="conRight btn-area flex-item">
-        <view class='iconfont icon-more more' data-index="{{itemIndex}}" bindtap="showNewsDetail"></view>
-    </view>
-  </view>  
-</view>
-
-
-
-
-
 
 <!-- <web-view src="http://sports.qq.com/a/20181013/008927.htm"></web-view> -->
 <!-- <web-view src="http://baijiahao.baidu.com/s?id=1614467948617412873&wfr=newsapp"></web-view> -->
