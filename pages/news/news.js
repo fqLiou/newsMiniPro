@@ -9,7 +9,7 @@ Page({
     channel:'',
     currentNavtab:0,
     page: 1,
-    pageSize: 10,
+    pageSize: 20,
     hasMoreData: true,
     contentlist: [],
     modalHidden: true,
@@ -161,7 +161,7 @@ Page({
         data = {//lioufq
           showapi_appid: '77349',
           showapi_sign: 'dbb68fdcae714f3e8e6bd22e4135ee3c',
-          maxResult: '10',
+          maxResult: '20',
           page: that.data.page,
           needContent: 1
         }
@@ -185,8 +185,7 @@ Page({
       })
     }
     network.requestLoading('http://route.showapi.com/109-35', data, message, function (res) {
-      console.log('after');
-      console.log('res', res);
+      // console.log('res', res);
       var contentlistTem = that.data.contentlist;
       if (res.showapi_res_code == 0) {//易源接口返回标志,0为成功，其他为失败。
         if (that.data.page == 1) {
