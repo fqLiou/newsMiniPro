@@ -26,69 +26,6 @@ Page({
     var that = this, message = '正在加载数据...', channelName = '全部新闻', needReset = !0, isFromOtherTab = !0;
     that.getNewsListByTab(message, channelName, needReset, isFromOtherTab);    
   },
-  getNewsList: function (message) {//加载新闻列表
-    var that = this,
-        // data = {
-        //   showapi_appid: '77349',//lioufq
-        //   showapi_sign: 'dbb68fdcae714f3e8e6bd22e4135ee3c',
-        //   maxResult: '10',
-        //   page: that.data.page,
-        //   needContent:1
-        // }
-        data = {
-          showapi_appid: '77805',//fqLiou
-          showapi_sign: '3afe36bdf06c480693bb135eac25a23e',
-          maxResult: '10',
-          page: that.data.page,
-          needContent: 1
-        }
-    network.requestLoading('http://route.showapi.com/109-35', data, message, function (res) {
-      console.log('res',res);
-      var contentlistTem = that.data.contentlist;
-      if (res.showapi_res_code == 0) {//易源接口返回标志,0为成功，其他为失败。
-        if (that.data.page == 1) {
-          contentlistTem = []
-        }
-        var contentlist = res.showapi_res_body.pagebean.contentlist,
-            thumbnail,
-            showTipFlag,
-            defaultSource = '时事新闻',
-            defaultThumb = 'http://img.027cgb.com/608987/logo.jpg';
-        // contentlist.forEach(function(value,index,arr){
-        //   console.log('val', value.channelName);
-        // });
-        // console.log(contentlist.channelName);
-        if (contentlist.length < that.data.pageSize) {
-          that.setData({
-            contentlist: contentlistTem.concat(contentlist),
-            hasMoreData: false,
-            defaultSource: defaultSource,
-            defaultThumb: defaultThumb
-          })
-        } else {
-          that.setData({
-            contentlist: contentlistTem.concat(contentlist),
-            hasMoreData: true,
-            page: that.data.page + 1,
-            defaultSource: defaultSource,
-            defaultThumb: defaultThumb
-          })
-        }
-      } else {//失败
-        wx.showToast({
-          title: res.showapi_res_error
-        })
-        that.setData({
-          showTipFlag: !0
-        })
-
-      }
-    }, function (res) {
-      wx.showToast({
-        title: '加载数据失败',
-      })
-    })
-  },
   showNewsDetail: function(e){//详情页面跳转
     var that = this, index = Number(e.currentTarget.dataset.index), id = that.data.contentlist[index].id;
     wx.navigateTo({
@@ -221,20 +158,20 @@ Page({
   getNewsListByTab: function (message, channelName, needReset, isFromOtherTab){
     //根据标签获取新闻列表：message为提示消息，channelName为标签，needReset为需要重置数据，isFromOtherTab为来自其他tab的点击（设置page）
     var that = this,
-        // data = {//lioufq
-        //   showapi_appid: '77349',
-        //   showapi_sign: 'dbb68fdcae714f3e8e6bd22e4135ee3c',
-        //   maxResult: '10',
-        //   page: that.data.page,
-        //   needContent: 1
-        // }
-      data = {
-        showapi_appid: '77805',//fqLiou
-        showapi_sign: '3afe36bdf06c480693bb135eac25a23e',
-        maxResult: '10',
-        page: that.data.page,
-        needContent: 1
-      }
+        data = {//lioufq
+          showapi_appid: '77349',
+          showapi_sign: 'dbb68fdcae714f3e8e6bd22e4135ee3c',
+          maxResult: '10',
+          page: that.data.page,
+          needContent: 1
+        }
+      // data = {
+      //   showapi_appid: '77805',//fqLiou
+      //   showapi_sign: '3afe36bdf06c480693bb135eac25a23e',
+      //   maxResult: '10',
+      //   page: that.data.page,
+      //   needContent: 1
+      // }
     if (needReset) {
       that.resetData();
     }
@@ -305,8 +242,7 @@ Page({
   },
   onPullDownRefresh: function () {//下拉刷新加载数据
     var that = this, channel = that.data.channel, needReset = !1, isFromOtherTab = !0;
-    this.data.page = 1
-    // this.getNewsList('正在刷新数据');
+    this.data.page = 1;
     console.log('top');
     this.getNewsListByTab('加载更多数据', channel, needReset, isFromOtherTab);
     setTimeout(function () {
@@ -316,7 +252,6 @@ Page({
   onReachBottom: function () {//上拉触底加载更多数据
     var that = this, channel = that.data.channel, needReset = !1, isFromOtherTab = !1;
     if (this.data.hasMoreData) {
-      // this.getNewsList('加载更多数据');
       this.getNewsListByTab('加载更多数据', channel, needReset, isFromOtherTab);
     } else {
       wx.showToast({

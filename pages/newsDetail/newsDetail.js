@@ -40,10 +40,10 @@ Page({
   getNewsById: function (message) {
     var that = this;
     var data = {
-      // showapi_appid: '77349',//lioufq
-      // showapi_sign: 'dbb68fdcae714f3e8e6bd22e4135ee3c',
-      showapi_appid: '77805',//fqLiou
-      showapi_sign: '3afe36bdf06c480693bb135eac25a23e',
+      showapi_appid: '77349',//lioufq
+      showapi_sign: 'dbb68fdcae714f3e8e6bd22e4135ee3c',
+      // showapi_appid: '77805',//fqLiou
+      // showapi_sign: '3afe36bdf06c480693bb135eac25a23e',
       id: that.data.id,//传入ID
       // id: "6057d51f73ce2554fdec1a02f9223117",
       // id: "f7a126e672fc1d0dd27c2914f97caed6",
