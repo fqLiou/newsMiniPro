@@ -269,5 +269,15 @@ Page({
         content: '当前微信版本过低，无法使用该功能，请升级到最新微信版本后重试。'
       })
     }
+  },
+  onShareAppMessage: function () {
+    return {
+      title: 'getNews小程序',
+      desc: '一款轻松便捷的新闻小程序，getNews，即刻出发。',
+      path: '/pages/news/news',
+      imageUrl:'/images/share.jpg'
+      // imageUrl: 'http://img.027cgb.com/608987/share.jpg'
+      // imageUrl: 'http://img.027cgb.com/608987/u=255019663,3076315121-fm=26-gp=0.jpg'
+    }
   }
 })
